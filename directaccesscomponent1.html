@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Component with Shadow DOM in Form</title>
+  <style>
+    custom-element {
+      display: block;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+
+
+ <custom-element id="myCustomElement1"></custom-element>
+
+<!--   <custom-element id="myCustomElement2"></custom-element> -->
+
+  <script>
+    class CustomElement extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <div id="content">Hello, Shadow DOM!</div>
+          <style>
+            #content {
+              color: black;
+              font-size: 20px;
+            }
+          </style>
+        `;
+      }
+
+      // Method to change the text content
+      changeText(newText) {
+        this.shadowRoot.getElementById('content').textContent = newText;
+      }
+
+      // Method to change the color of the text
+      changeColor(newColor) {
+        this.shadowRoot.getElementById('content').style.color = newColor;
+      }
+
+      // Method to get the current text content
+      getTextContent() {
+        return this.shadowRoot.getElementById('content').textContent;
+      }
+
+      // Method to set the text content
+      setTextContent(newText) {
+        this.changeText(newText);
+      }
+    }
+
+    customElements.define('custom-element', CustomElement);
+
+    // Accessing the custom element by ID
+    const customElement1 = document.getElementById('myCustomElement1');
+
+
+    // Accessing methods directly
+   console.log('Current text content:', customElement1.getTextContent());
+   customElement1.setTextContent('Text changed by Rohit!');
+    console.log('Updated text content:', customElement1.getTextContent());
+    customElement1.changeColor('green');
+  </script>
+</body>
+</html>

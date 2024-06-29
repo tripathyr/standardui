@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setters vs. Functions Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Setters Example</h1>
+    
+    <div class="section" id="setter-section">
+        <h2>Using Setters</h2>
+        <p id="setter-result" class="highlight"></p>
+    </div>
+    
+
+    
+    <script>
+        // Using a Setter
+        class ValidatorWithSetter {
+            constructor() {
+                this._validationFunction = null;
+            }
+
+            //val is a function that stays fixed
+            set customValidation(val) {
+                if (val) {
+                    this._validationFunction = val;
+                }
+            }
+
+            get customValidation() {
+                return this._validationFunction;
+            }
+        }
+
+        
+        
+
+        // Create instances
+        const validatorWithSetter1 = new ValidatorWithSetter();
+ 
+
+        // Assign custom validation functions
+        validatorWithSetter1.customValidation = function(value) {
+            return value > 10;
+        };
+
+
+        // Testing the validation functions
+        const setterTestValue = 11;
+
+
+        // Display results
+        document.getElementById('setter-result').textContent = 
+            `Setter result for ${setterTestValue}: ${validatorWithSetter1.customValidation(setterTestValue)}`;
+
+
+    </script>
+</body>
+</html>

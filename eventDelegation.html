@@ -1,0 +1,16 @@
+<ul id="todoList">
+  <li class="todo-item">Task 1 <button class="complete-btn">Complete</button></li>
+  <li class="todo-item">Task 2 <button class="complete-btn">Complete</button></li>
+  <li class="todo-item">Task 3 <button class="complete-btn">Complete</button></li>
+</ul>
+
+<script>
+  document.getElementById('todoList').addEventListener('click', function(event) {
+    // Check if a complete button was clicked
+    if (event.target && event.target.matches('button.complete-btn')) {
+      const item = event.target.closest('.todo-item');
+      item.classList.add('completed');
+      console.log('Task completed:', item.textContent.trim());
+    }
+  });
+</script>

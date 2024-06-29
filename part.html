@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Button Example</title>
+    <style>
+        /* External styles for custom button component */
+        custom-button {
+            --button-bg-color: #007bff; /* Default background color */
+        }
+        custom-button[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        custom-button[variant='outline'] {
+            background-color: transparent;
+            border: 2px solid var(--button-bg-color);
+            color: var(--button-bg-color);
+        }
+        /* Styling the content within the custom button */
+        custom-button::slotted(span) {
+            font-weight: bold;
+        }
+
+}
+    </style>
+</head>
+<body>
+    <!-- Using the custom button component -->
+    <custom-button variant="outline" disabled>
+        <span>Click Me</span>
+    </custom-button>
+
+    <!-- Template for the custom button component -->
+    <template id="custom-button-template">
+        <style>
+            /* Default styles for the custom button */
+            :host {
+                display: inline-block;
+                padding: 8px 16px;
+                background-color: var(--button-bg-color);
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        </style>
+        <button part="custom-button">
+            <slot></slot>
+        </button>
+    </template>
+
+    <!-- JavaScript to define the custom button component -->
+    <script>
+        class CustomButton extends HTMLElement {
+            constructor() {
+                super();
+                const shadowRoot = this.attachShadow({ mode: 'open' });
+                shadowRoot.appendChild(document.getElementById('custom-button-template').content.cloneNode(true));
+            }
+        }
+
+        customElements.define('custom-button', CustomButton);
+    </script>
+<style>
+            custom-button {
+            --button-bg-color: #007bff; /* Modified background color */
+        }
+
+</style>
+   
+</body>
+</html>

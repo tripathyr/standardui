@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Rectangle Calculator</h2>
+    <label for="width">Width:</label>
+    <input type="number" id="width" placeholder="Enter width">
+    <label for="height">Height:</label>
+    <input type="number" id="height" placeholder="Enter height">
+    <button onclick="calculateRectangle()">Calculate</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+class Rectangle {
+    //DIRECTLY SETTING PRIVATE VARIABLES 
+/*    constructor(width, height) {
+        this._width = width;
+        this._height = height;
+    }
+*/
+  //INVOKING SETTERS AND SETTING PRIVATE VARIABLES 
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    // Getter for width
+    get width() {
+        return this._width;
+    }
+
+    // Setter for width
+    set width(value) {
+        if (value > 0) {
+            this._width = value;
+        } else {
+            console.error("Width must be a positive number.");
+        }
+    }
+
+    // Getter for height
+    get height() {
+        return this._height;
+    }
+
+    // Setter for height
+    set height(value) {
+        if (value > 0) {
+            this._height = value;
+        } else {
+            console.error("Height must be a positive number.");
+        }
+    }
+
+    // Method to calculate the area of the rectangle
+    getArea() {
+        return this._width * this._height;
+    }
+
+    // Method to calculate the perimeter of the rectangle
+    getPerimeter() {
+        return 2 * (this._width + this._height);
+    }
+}
+
+function calculateRectangle() {
+    const width = parseFloat(document.getElementById('width').value);
+    const height = parseFloat(document.getElementById('height').value);
+    
+    if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+        document.getElementById('result').innerHTML = '<p style="color: red;">Please enter positive numbers for both width and height.</p>';
+        return;
+    }
+
+    const myRectangle = new Rectangle(width, height);
+    
+    const area = myRectangle.getArea();
+    const perimeter = myRectangle.getPerimeter();
+
+    document.getElementById('result').innerHTML = `
+        <p>Width: ${myRectangle.width}</p>
+        <p>Height: ${myRectangle.height}</p>
+        <p>Area: ${area}</p>
+        <p>Perimeter: ${perimeter}</p>
+    `;
+}
+</script>
+
+</body>
+</html>

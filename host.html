@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Host Example</title>
+    <style>
+        /* Styles for the content inside the shadow DOM */
+       
+    </style>
+</head>
+<body>
+    <!-- Define a custom element -->
+    <my-custom-element></my-custom-element>
+
+    <!-- Define the template for the custom element -->
+    <template id="my-custom-element-template">
+        <style>
+            /* Styles specific to the shadow host */
+            :host {
+                display: block;
+                background-color: lightblue;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            p {
+            color: red;
+            font-size: 18px;
+        }
+        </style>
+        <p>This is a custom element with shadow host styling.</p>
+    </template>
+
+    <!-- JavaScript to create the custom element and attach shadow DOM -->
+    <script>
+        // Get the template content
+        const template = document.getElementById('my-custom-element-template');
+        const templateContent = template.content;
+
+        // Define the custom element class
+        class MyCustomElement extends HTMLElement {
+            constructor() {
+                super();
+                // Attach shadow DOM and clone template content
+                const shadowRoot = this.attachShadow({ mode: 'open' });
+                shadowRoot.appendChild(templateContent.cloneNode(true));
+            }
+        }
+
+        // Attach the custom element name
+        customElements.define('my-custom-element', MyCustomElement);
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <button id="navigateHome">Go to Home Page</button>
+    <button id="navigateAbout">Go to About Page</button>
+    <button id="navigateProfile">Go to Profile Page</button>
+
+    <script>
+        class Router {
+            /**
+             * @constructor {object} options - options for the router
+             * @param {object} options.routes - routes for the router
+             * @param {object} options.state - initial state for the router
+             * @param {function} options.routingStart - function to be called before routing
+             * @param {function} options.routingEnd - function to be called after routing
+             */
+            constructor(options = {}) {
+                const { routes = {}, state = {}, routingStart, routingEnd } = options;
+                this.routes = routes;
+                this.state = state;
+                this.routingStart = routingStart;
+                this.routingEnd = routingEnd;
+                this.lastPage = null;
+                window.addEventListener('hashchange', e => this.routeTo(window.location.hash));
+            }
+            /**
+             * @param {string} route - route to be added
+             * @param {function} callback - function to be called when route is matched
+             */
+            addRoute(route, callback) {
+                this.routes[route] = callback;
+            }
+            /**
+             * @param {string} route
+             */
+            handleRouting = async (page) => {
+                if (this.routingStart) {
+                    this.routingStart(this.state);
+                }
+                if (this.routes[page]) {
+                    //THIS IS WHAT IS MOVING THE PAGE homePage(state), aboutPage(state) etc functions are called
+                    await this.routes[page](this.state);
+                    this.lastPage = page;
+                } else {
+                    if (this.routes['404']) {
+                        this.routes['404'](this.state);
+                    } else {
+                        console.error(`No route found for '${page}' and no '404' route is defined.`);
+                    }
+                }
+                if (this.routingEnd) {
+                    this.routingEnd(this.state);
+                }
+            }
+            async routeTo(destination) {
+                try {
+                    let page;
+                    let wildcards = [];
+                    let params = {};
+                    let [path, queryString] = destination.split('?');
+                    if (path.includes('#'))
+                        path = path.split('#')[1];
+                    if (path.includes('/'))
+                        [, page, ...wildcards] = path.split('/');
+                    else
+                        page = path;
+                    this.state = { page, wildcards, lastPage: this.lastPage, params };
+                    if (queryString) {
+                        params = new URLSearchParams(queryString);
+                        this.state.params = Object.fromEntries(params);
+                    }
+                    if (document.startViewTransition) {
+                        document.startViewTransition(async () => {
+                            await this.handleRouting(page);
+                        });
+                    } else {
+                        // Fallback for browsers that don't support View transition API:
+                        await this.handleRouting(page);
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        }
+
+        // Callback functions for the routes
+        const homePage = (state) => {
+            console.log('Home Page', state);
+            document.getElementById('app').innerHTML = '<h1>Home Page</h1>';
+        };
+
+        const aboutPage = (state) => {
+            console.log('About Page', state);
+            document.getElementById('app').innerHTML = '<h1>About Page</h1>';
+        };
+
+        const profilePage = (state) => {
+            console.log('Profile Page', state);
+            document.getElementById('app').innerHTML = `<h1>Profile Page </h1>`;
+        };
+
+        const notFoundPage = (state) => {
+            console.log('404 Page', state);
+            document.getElementById('app').innerHTML = '<h1>404 Page Not Found</h1>';
+        };
+
+        // Initialize the router with initial routes
+        const router = new Router({
+            routes: {
+                'home': homePage,
+                'about': aboutPage,
+                '404': notFoundPage
+            },
+            routingStart: (state) => console.log('Routing started', state),
+            routingEnd: (state) => console.log('Routing ended', state)
+        });
+
+        // Add an additional route
+        router.addRoute('profile', profilePage);
+
+        // Example of navigating to a route
+      //  window.location.hash = '#/home'; // Navigate to home page
+
+        // Adding button event listeners for navigation
+        document.getElementById('navigateHome').addEventListener('click', () => {
+            router.routeTo('#/home'); // Navigate to home page
+        });
+
+        document.getElementById('navigateAbout').addEventListener('click', () => {
+            router.routeTo('#/about'); // Navigate to about page
+        });
+
+        document.getElementById('navigateProfile').addEventListener('click', () => {
+            router.routeTo('#/profile'); // Navigate to profile page for userId 12345
+        });
+    </script>
+</body>
+</html>

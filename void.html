@@ -1,0 +1,26 @@
+<script>
+class ExampleClass {
+  constructor() {
+    this._value = void 0; // Initialize _value to undefined
+  }
+
+  setValue(value) {
+    this._value = value; // Set _value to a new value
+  }
+
+  clearValue() {
+    this._value = void 0; // Explicitly clear _value
+  }
+
+  getValue() {
+    return this._value;
+  }
+}
+
+const example = new ExampleClass();
+console.log(example.getValue()); // undefined
+example.setValue(42);
+console.log(example.getValue()); // 42
+example.clearValue();
+console.log(example.getValue()); // undefined
+</script>

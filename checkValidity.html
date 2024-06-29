@@ -1,0 +1,17 @@
+<form id="myForm">
+  <input type="text" id="myInput" required minlength="5" />
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  const form = document.getElementById('myForm');
+  const input = document.getElementById('myInput');
+
+  form.addEventListener('submit', function(event) {
+    if (!input.checkValidity()) {
+      // Prevent the form from submitting if the input is invalid
+      event.preventDefault();
+      alert('The input is invalid!');
+    }
+  });
+</script>

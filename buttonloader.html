@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Loader Example</title>
+    <style>
+        #myButton {
+            position: relative;
+            padding-right: 40px;
+        }
+        sm-spinner {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            border: 2px solid #ccc;
+            border-top: 2px solid #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <button id="myButton">Submit</button>
+    <button onclick="simulateLoading()">Simulate Loading</button>
+
+    <script>
+        function buttonLoader(id, show) {
+            const button = typeof id === 'string' ? document.getElementById(id) : id;
+            if (!button) return;
+            if (!button.dataset.hasOwnProperty('wasDisabled'))
+                button.dataset.wasDisabled = button.disabled;
+            const animOptions = {
+                duration: 200,
+                fill: 'forwards',
+                easing: 'ease'
+            };
+            if (show) {
+                button.disabled = true;
+                button.parentNode.append(document.createElement('sm-spinner'));
+                button.animate([
+                    { clipPath: 'circle(100%)' },
+                    { clipPath: 'circle(0)' }
+                ], animOptions);
+            } else {
+                button.disabled = button.dataset.wasDisabled === 'true';
+                button.animate([
+                    { clipPath: 'circle(0)' },
+                    { clipPath: 'circle(100%)' }
+                ], animOptions).onfinish = () => {
+                    button.removeAttribute('data-original-state');
+                };
+                const potentialTarget = button.parentNode.querySelector('sm-spinner');
+                if (potentialTarget) potentialTarget.remove();
+            }
+        }
+
+        function simulateLoading() {
+            buttonLoader('myButton', true); // Show loading state
+            setTimeout(() => {
+                buttonLoader('myButton', false); // Hide loading state after 2 seconds
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

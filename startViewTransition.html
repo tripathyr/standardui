@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Transition Example</title>
+    <style>
+        #content {
+            transition: opacity 0.5s;
+        }
+        .hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Old Content</h1>
+        <p>This is the old content.</p>
+    </div>
+    <button onclick="updateContent()">Update Content</button>
+
+    <script>
+        async function updateContent() {
+            if (document.startViewTransition) {
+                document.startViewTransition(async () => {
+                    console.log("Start View Transition Working");
+                    const content = document.getElementById('content');
+                    content.classList.add('hidden'); // Optional: Add a class to start fading out
+                    await new Promise(resolve => setTimeout(resolve, 500)); // Wait for the fade-out to complete
+                    content.innerHTML = '<h1>New Content</h1><p>This is the updated content.</p>';
+                    content.classList.remove('hidden'); // Remove the class to fade back in
+                });
+            } else {
+                // Fallback for browsers that do not support View Transitions API
+                console.log("Start View Transition NOT Working");
+                const content = document.getElementById('content');
+                content.classList.add('hidden'); // Optional: Add a class to start fading out
+                await new Promise(resolve => setTimeout(resolve, 500)); // Wait for the fade-out to complete
+                content.innerHTML = '<h1>New Content</h1><p>This is the updated content.</p>';
+                content.classList.remove('hidden'); // Remove the class to fade back in
+            }
+        }
+    </script>
+</body>
+</html>

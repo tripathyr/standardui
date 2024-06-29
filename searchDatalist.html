@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Datalist</title>
+    <style>
+        .datalist-container {
+            position: relative;
+            display: inline-block;
+        }
+        .datalist-input {
+            width: 200px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .datalist-list {
+            position: absolute;
+            border: 1px solid #ccc;
+            border-top: none;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .datalist-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .datalist-item:hover,
+        .datalist-item:focus {
+            background-color: #f0f0f0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="datalist-container">
+        <input type="text" class="datalist-input" placeholder="Search...">
+        <ul class="datalist-list hidden"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            class Datalist {
+                constructor(datalist, inputElement, optionListElement) {
+                    this.datalist = datalist;
+                    this.inputElement = inputElement;
+                    this.optionList = optionListElement;
+
+                    this.inputElement.addEventListener('input', () => {
+                        this.searchDatalist(this.inputElement.value);
+                    });
+                }
+
+                searchDatalist = (searchKey) => {
+                    const filteredData = this.datalist.filter((item) =>
+                        item.toLowerCase().includes(searchKey.toLowerCase())
+                    );
+                    if (
+                        (filteredData.sort(
+                            (a, b) =>
+                                a.toLowerCase().indexOf(searchKey.toLowerCase()) -
+                                b.toLowerCase().indexOf(searchKey.toLowerCase())
+                        ),
+                        filteredData.length)
+                    ) {
+                        if (this.optionList.children.length > filteredData.length) {
+                            const optionsToRemove =
+                                this.optionList.children.length - filteredData.length;
+                            for (let i = 0; i < optionsToRemove; i++)
+                                this.optionList.removeChild(this.optionList.lastChild);
+                        }
+                        filteredData.forEach((item, index) => {
+                            if (this.optionList.children[index])
+                                this.optionList.children[index].textContent = item;
+                            else {
+                                const option = document.createElement("li");
+                                option.textContent = item;
+                                option.classList.add("datalist-item");
+                                option.setAttribute("tabindex", "0");
+                                this.optionList.appendChild(option);
+                            }
+                        });
+                        this.optionList.classList.remove("hidden");
+                    } else {
+                        this.optionList.classList.add("hidden");
+                    }
+                };
+            }
+
+            const datalistItems = [
+                'Apple',
+                'Banana',
+                'Cherry',
+                'Date',
+                'Fig',
+                'Grape',
+                'Kiwi',
+                'Lemon',
+                'Mango',
+                'Orange',
+                'Pineapple',
+                'Strawberry',
+                'Watermelon'
+            ];
+
+            const inputElement = document.querySelector('.datalist-input');
+            const optionListElement = document.querySelector('.datalist-list');
+
+            new Datalist(datalistItems, inputElement, optionListElement);
+        });
+    </script>
+</body>
+</html>

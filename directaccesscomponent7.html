@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Component with Getter and Setter</title>
+</head>
+<body>
+
+<my-element></my-element>
+
+<script>
+    class MyElement extends HTMLElement {
+        constructor() {
+            super();
+            this._message = 'Hello, World!';
+            
+            // Attach a shadow DOM
+            this.attachShadow({ mode: 'open' });
+
+            // Create an element to display the message
+            this.messageElement = document.createElement('div');
+            this.shadowRoot.appendChild(this.messageElement);
+        }
+
+        // Getter for the 'message' property
+        get message() {
+            return this._message;
+        }
+
+        // Setter for the 'message' property
+        set message(value) {
+            this._message = value;
+            this.messageElement.textContent = this._message;
+        }
+
+        // Called when the element is inserted into the DOM
+        connectedCallback() {
+            this.messageElement.textContent = this._message;
+        }
+
+        // Observed attributes list
+        static get observedAttributes() {
+            return ['message'];
+        }
+
+        // Called when an observed attribute is changed
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (name === 'message') {
+                this.message = newValue;
+            }
+        }
+    }
+
+    // Define the new element
+    customElements.define('my-element', MyElement);
+
+    // Example of using the custom element
+    const myElement = document.querySelector('my-element');
+    console.log(myElement.message); // Output: Hello, World!
+
+    // Updating the message property
+    myElement.message = 'Hello, Web Component!';
+    console.log(myElement.message); // Output: Hello, Web Component!
+
+    // Updating the message attribute
+    myElement.setAttribute('message', 'Hello, Attribute!');
+    console.log(myElement.message); // Output: Hello, Attribute!
+</script>
+
+</body>
+</html>

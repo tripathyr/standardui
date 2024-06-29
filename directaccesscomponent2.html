@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Component with Shadow DOM in Form and custom element in hTML form</title>
+  <style>
+    custom-element {
+      display: block;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Web Component Example</h1>
+  <form id="customElementForm">
+    <!-- Custom element with an ID and a slot -->
+    <custom-element id="myCustomElement">Original Content</custom-element>
+    <button type="button" id="rohitSlotText">Change Slot Text</button>
+    <button type="button" id="rohitColor">Change Color</button>
+  </form>
+
+  <script>
+    class CustomElement extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <div id="content">
+            <slot></slot>
+          </div>
+          <style>
+            #content {
+              color: black;
+              font-size: 20px;
+            }
+          </style>
+        `;
+      }
+
+      // Method to change the color of the text
+      changeColor(newColor) {
+        this.shadowRoot.getElementById('content').style.color = newColor;
+      }
+    }
+
+    customElements.define('custom-element', CustomElement);
+
+    // Accessing the custom element by ID
+    const rohit = document.getElementById('myCustomElement');
+
+    // Event listener to change the slot text content
+    document.getElementById('rohitSlotText').addEventListener('click', () => {
+      rohit.innerHTML = 'Slot text changed via method!';
+    });
+
+    // Event listener to change the color of the text
+    document.getElementById('rohitColor').addEventListener('click', () => {
+      rohit.changeColor('blue');
+    });
+  </script>
+</body>
+</html>

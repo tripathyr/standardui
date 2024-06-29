@@ -1,0 +1,533 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+ 
+  <title>CodePen - Websafe colors meet CSS Grid (auto-placement demo)</title>
+
+    <link rel="canonical" href="https://codepen.io/rachelandrew/pen/LRWPNp">
+  
+<style>
+* { box-sizing: border-box; }
+
+body {
+  font: 90% Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+h1 {
+  margin: 20px 0 40px 0;
+}
+
+.colors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(80px, 1fr));
+  grid-gap: 2px;
+  grid-auto-rows: minmax(80px, auto);
+  grid-auto-flow: dense;
+}
+
+.colors li {
+  border-radius: 1em;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+
+
+.test1 {
+  grid-row: 1 / 3;
+  grid-column: 1 / -1;
+  
+}
+
+
+.test2 {
+  grid-row: 3/6;
+  /*grid-row-end: -1;*/
+  grid-column: 1 / -1;
+ 
+}
+
+
+
+.span2 {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+
+
+.span3 {
+  grid-column-end: span 3;
+  grid-row-end: span 3;
+}
+
+.tall4 {
+  grid-row-end: span 4;
+} 
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div class="chart">
+  <h1>Grid auto-placement</h1>
+  
+  <ul class="colors">
+
+    <li style="background-color:#FFFFFF;color:black">FFF FFF =1
+    </li>
+    <li style="background-color:#CCCCCC;color:black">CCC CCC =2
+    </li>
+    <li style="background-color:#999999;color:black" class="test1">999 999 =3
+    </li>
+    <li style="background-color:#666666;color:white">666 666 =4
+    </li>
+    <li style="background-color:#333333;color:white">333 333 =5
+    </li>
+    <li style="background-color:#000000;color:white" >000 000 =6
+    </li>
+    <li style="background-color:#FFCC00;color:black" class="span2">FFC C00 =7
+    </li>
+    <li style="background-color:#FF9900;color:black" class="span2">FF9 900 =8
+    </li>
+    <li style="background-color:#FF6600;color:black" class="span2">FF6 600 =9
+    </li>
+    <li style="background-color:#FF3300;color:white" class="span2">FF3 300 =10
+    </li>
+
+    <li style="background-color:#99CC00;color:black" class="span2">99C C00 =11
+    </li>
+    
+    <li style="background-color:#CC9900;color:black" class="span2">CC9 900 =12
+    </li>
+    <li style="background-color:#FFCC33;color:black" class="test2">FFC C33 =13
+    </li>
+    <li style="background-color:#FFCC66;color:black">FFC C66 =14
+    </li>
+    <li style="background-color:#FF9966;color:black">FF9 966 =15
+    </li>
+    <li style="background-color:#FF6633;color:black">FF6 633 =16
+    </li>
+    <li style="background-color:#CC3300;color:white" class="span2">CC3 300 =17
+    </li>
+
+    <li style="background-color:#CC0033;color:white">CC0 033 =18
+    </li>
+    <li style="background-color:#CCFF00;color:black" class="span2">CCF F00 =19
+    </li>
+    <li style="background-color:#CCFF33;color:black">CCF F33 =20
+    </li>
+    <li style="background-color:#333300;color:white" class="span2">333 300 =21
+    </li>
+    <li style="background-color:#666600;color:white" class="span2">666 600 =22
+    </li>
+    <li style="background-color:#999900;color:black" class="span2">999 900 =23
+    </li>
+    <li style="background-color:#CCCC00;color:black" class="span2">CCC C00 =24
+    </li>
+    <li style="background-color:#FFFF00;color:black" class="span2">FFF F00 =25
+    </li>
+    <li style="background-color:#CC9933;color:black">CC9 933 =26
+    </li>
+    <li style="background-color:#CC6633;color:white">CC6 633 =27
+    </li>
+    <li style="background-color:#330000;color:white" class="span2">330 000 =28
+    </li>
+    <li style="background-color:#660000;color:white" class="span2">660 000 =29
+    </li>
+    <li style="background-color:#990000;color:white" class="span2">990 000 =30
+    </li>
+    <li style="background-color:#CC0000;color:white" class="span2">CC0 000 =31
+    </li>
+    <li style="background-color:#FF0000;color:white" class="span2">FF0 000 =32
+    </li>
+    <li style="background-color:#FF3366;color:white">FF3 366 =33
+    </li>
+    <li style="background-color:#FF0033;color:white">FF0 033 =34
+    </li>
+    <li style="background-color:#99FF00;color:black" class="span2">99F F00 =35
+    </li>
+    <li style="background-color:#CCFF66;color:black">CCF F66 =36
+    </li>
+    <li style="background-color:#99CC33;color:black">99C C33 =37
+    </li>
+    <li style="background-color:#666633;color:white">666 633 =38
+    </li>
+    <li style="background-color:#999933;color:black">999 933 =39
+    </li>
+    <li style="background-color:#CCCC33;color:black">CCC C33 =40
+    </li>
+    <li style="background-color:#FFFF33;color:black">FFF F33 =41
+    </li>
+    <li style="background-color:#996600;color:white" class="span2">996 600 =42
+    </li>
+    <li style="background-color:#993300;color:white" class="span2">993 300 =43
+    </li>
+    <li style="background-color:#663333;color:white" class="span2">663 333 =44
+    </li>
+    <li style="background-color:#993333;color:white">993 333 =45
+    </li>
+    <li style="background-color:#CC3333;color:white">CC3 333 =46
+    </li>
+    <li style="background-color:#FF3333;color:white">FF3 333 =47
+    </li>
+    <li style="background-color:#CC3366;color:white">CC3 366 =48
+    </li>
+    <li style="background-color:#FF6699;color:black" class="span3">FF6 699 =49
+    </li>
+    <li style="background-color:#FF0066;color:white">FF0 066 =50
+    </li>
+    <li style="background-color:#66FF00;color:black" class="span2">66F F00 =51
+    </li>
+    <li style="background-color:#99FF66;color:black">99F F66 =52
+    </li>
+    <li style="background-color:#66CC33;color:black">66C C33 =53
+    </li>
+    <li style="background-color:#669900;color:white" class="span2">669 900 =54
+    </li>
+    <li style="background-color:#999966;color:black">999 966 =55
+    </li>
+    <li style="background-color:#CCCC66;color:black">CCC C66 =56
+    </li>
+    <li style="background-color:#FFFF66;color:black">FFF F66 =57
+    </li>
+    <li style="background-color:#996633;color:white">996 633 =58
+    </li>
+    <li style="background-color:#663300;color:white" class="span2">663 300 =59
+    </li>
+    <li style="background-color:#996666;color:white">996 666 =60
+    </li>
+    <li style="background-color:#CC6666;color:black">CC6 666 =61
+    </li>
+    <li style="background-color:#FF6666;color:black">FF6 666 =62
+    </li>
+    <li style="background-color:#990033;color:white">990 033 =63
+    </li>
+    <li style="background-color:#CC3399;color:white" class="span3">CC3 399 =64
+    </li>
+    <li style="background-color:#FF66CC;color:black">FF6 6CC =65
+    </li>
+    <li style="background-color:#FF0099;color:white" class="span3">FF0 099 =66
+    </li>
+    <li style="background-color:#33FF00;color:black" class="span2">33F F00 =67
+    </li>
+    <li style="background-color:#66FF33;color:black">66F F33 =68
+    </li>
+    <li style="background-color:#339900;color:white" class="span2">339 900 =69
+    </li>
+    <li style="background-color:#66CC00;color:black" class="span2">66C C00 =70
+    </li>
+    <li style="background-color:#99FF33;color:black">99F F33 =71
+    </li>
+    <li style="background-color:#CCCC99;color:black" class="span3">CCC C99 =72
+    </li>
+    <li style="background-color:#FFFF99;color:black" class="span3">FFF F99 =73
+    </li>
+    <li style="background-color:#CC9966;color:black">CC9 966 =74
+    </li>
+    <li style="background-color:#CC6600;color:white" class="span2">CC6 600 =75
+    </li>
+    <li style="background-color:#CC9999;color:black" class="span3">CC9 999 =76
+    </li>
+    <li style="background-color:#FF9999;color:black" class="span3">FF9 999 =77
+    </li>
+    <li style="background-color:#FF3399;color:white" class="span3">FF3 399 =78
+    </li>
+    <li style="background-color:#CC0066;color:white">CC0 066 =79
+    </li>
+    <li style="background-color:#990066;color:white">990 066 =80
+    </li>
+    <li style="background-color:#FF33CC;color:black">FF3 3CC =81
+    </li>
+    <li style="background-color:#FF00CC;color:white">FF0 0CC =82
+    </li>
+    <li style="background-color:#00CC00;color:white" class="span2">00C C00 =83
+    </li>
+    <li style="background-color:#33CC00;color:black" class="span2">33C C00 =84
+    </li>
+    <li style="background-color:#336600;color:white" class="span2">336 600 =85
+    </li>
+    <li style="background-color:#669933;color:white">669 933 =86
+    </li>
+    <li style="background-color:#99CC66;color:black">99C C66 =87
+    </li>
+    <li style="background-color:#CCFF99;color:black" class="span3">CCF F99 =88
+    </li>
+    <li style="background-color:#FFFFCC;color:black">FFF FCC =89
+    </li>
+    <li style="background-color:#FFCC99;color:black" class="span3">FFC C99 =90
+    </li>
+    <li style="background-color:#FF9933;color:black">FF9 933 =91
+    </li>
+    <li style="background-color:#FFCCCC;color:black">FFC CCC =92
+    </li>
+    <li style="background-color:#FF99CC;color:black">FF9 9CC =93
+    </li>
+    <li style="background-color:#CC6699;color:black" class="span3">CC6 699 =94
+    </li>
+    <li style="background-color:#993366;color:white">993 366 =95
+    </li>
+    <li style="background-color:#660033;color:white">660 033 =96
+    </li>
+    <li style="background-color:#CC0099;color:white" class="span3">CC0 099 =97
+    </li>
+    <li style="background-color:#330033;color:white">330 033 =98
+    </li>
+    <li style="background-color:#33CC33;color:black">33C C33 =99
+    </li>
+    <li style="background-color:#66CC66;color:black">66C C66 =100
+    </li>
+    <li style="background-color:#00FF00;color:black" class="span2">00F F00 =101
+    </li>
+    <li style="background-color:#33FF33;color:black">33F F33 =102
+    </li>
+    <li style="background-color:#66FF66;color:black">66F F66 =103
+    </li>
+    <li style="background-color:#99FF99;color:black" class="span3">99F F99 =104
+    </li>
+    <li style="background-color:#CCFFCC;color:black">CCF FCC =105
+    </li>
+    <li style="background-color:#CC99CC;color:black">CC9 9CC =106
+    </li>
+    <li style="background-color:#996699;color:white" class="span3">996 699 =107
+    </li>
+    <li style="background-color:#993399;color:white" class="span3">993 399 =108
+    </li>
+    <li style="background-color:#990099;color:white" class="span3">990 099 =109
+    </li>
+    <li style="background-color:#663366;color:white">663 366 =110
+    </li>
+    <li style="background-color:#660066;color:white">660 066 =111
+    </li>
+    <li style="background-color:#006600;color:white" class="span2">006 600 =112
+    </li>
+    <li style="background-color:#336633;color:white">336 633 =113
+    </li>
+    <li style="background-color:#009900;color:white" class="span2">009 900 =114
+    </li>
+    <li style="background-color:#339933;color:white">339 933 =115
+    </li>
+    <li style="background-color:#669966;color:black">669 966 =116
+    </li>
+    <li style="background-color:#99CC99;color:black" class="span3">99C C99 =117
+    </li>
+    <li style="background-color:#FFCCFF;color:black" class="tall4">FFC CFF =118
+    </li>
+    <li style="background-color:#FF99FF;color:black" class="tall4">FF9 9FF =119
+    </li>
+    <li style="background-color:#FF66FF;color:black" class="tall4">FF6 6FF =120
+    </li>
+    <li style="background-color:#FF33FF;color:black" class="tall4">FF3 3FF =121
+    </li>
+    <li style="background-color:#FF00FF;color:white" class="tall4">FF0 0FF =122
+    </li>
+    <li style="background-color:#CC66CC;color:black">CC6 6CC =123
+    </li>
+    <li style="background-color:#CC33CC;color:white">CC3 3CC =124
+    </li>
+    <li style="background-color:#003300;color:white" class="span2">003 300 =125
+    </li>
+    <li style="background-color:#00CC33;color:white">00C C33 =126
+    </li>
+    <li style="background-color:#006633;color:white">006 633 =127
+    </li>
+    <li style="background-color:#339966;color:white">339 966 =128
+    </li>
+    <li style="background-color:#66CC99;color:black" class="span3">66C C99 =129
+    </li>
+    <li style="background-color:#99FFCC;color:black">99F FCC =130
+    </li>
+    <li style="background-color:#CCFFFF;color:black" class="tall4">CCF FFF =131
+    </li>
+    <li style="background-color:#3399FF;color:black" class="tall4">339 9FF =132
+    </li>
+    <li style="background-color:#99CCFF;color:black" class="tall4">99C CFF =133
+    </li>
+    <li style="background-color:#CCCCFF;color:black" class="tall4">CCC CFF =134
+    </li>
+    <li style="background-color:#CC99FF;color:black" class="tall4">CC9 9FF =135
+    </li>
+    <li style="background-color:#9966CC;color:black">996 6CC =136
+    </li>
+    <li style="background-color:#663399;color:white" class="span3">663 399 =137
+    </li>
+    <li style="background-color:#330066;color:white">330 066 =138
+    </li>
+    <li style="background-color:#9900CC;color:white">990 0CC =139
+    </li>
+    <li style="background-color:#CC00CC;color:white">CC0 0CC =140
+    </li>
+    <li style="background-color:#00FF33;color:black">00F F33 =141
+    </li>
+    <li style="background-color:#33FF66;color:black">33F F66 =142
+    </li>
+    <li style="background-color:#009933;color:white">009 933 =143
+    </li>
+    <li style="background-color:#00CC66;color:black">00C C66 =144
+    </li>
+    <li style="background-color:#33FF99;color:black" class="span3">33F F99 =145
+    </li>
+    <li style="background-color:#99FFFF;color:black" class="tall4">99F FFF =145
+    </li>
+    <li style="background-color:#99CCCC;color:black">99C CCC =146
+    </li>
+    <li style="background-color:#0066CC;color:white">006 6CC =147
+    </li>
+    <li style="background-color:#6699CC;color:black">669 9CC =148
+    </li>
+    <li style="background-color:#9999FF;color:black" class="tall4">999 9FF =149
+    </li>
+    <li style="background-color:#9999CC;color:black">999 9CC =150
+    </li>
+    <li style="background-color:#9933FF;color:white" class="tall4">993 3FF =151
+    </li>
+    <li style="background-color:#6600CC;color:white">660 0CC =152
+    </li>
+    <li style="background-color:#660099;color:white" class="span3">660 099 =153
+    </li>
+    <li style="background-color:#CC33FF;color:white" class="tall4">CC3 3FF =154
+    </li>
+    <li style="background-color:#CC00FF;color:white" class="tall4">CC0 0FF =155
+    </li>
+    <li style="background-color:#00FF66;color:black">00F F66 =156
+    </li>
+    <li style="background-color:#66FF99;color:black" class="span3">66F F99 =157
+    </li>
+    <li style="background-color:#33CC66;color:black">33C C66 =158
+    </li>
+    <li style="background-color:#009966;color:white">009 966 =159
+    </li>
+    <li style="background-color:#66FFFF;color:black" class="tall4">66F FFF =160
+    </li>
+    <li style="background-color:#66CCCC;color:black">66C CCC =161
+    </li>
+    <li style="background-color:#669999;color:black" class="span3">669 999 =162
+    </li>
+    <li style="background-color:#003366;color:white">003 366 =163
+    </li>
+    <li style="background-color:#336699;color:white" class="span3">336 699 =164
+    </li>
+    <li style="background-color:#6666FF;color:white" class="tall4">666 6FF =165
+    </li>
+    <li style="background-color:#6666CC;color:white">666 6CC =166
+    </li>
+    <li style="background-color:#666699;color:white" class="span3">666 699 =167
+    </li>
+    <li style="background-color:#330099;color:white" class="span3">330 099 =168
+    </li>
+    <li style="background-color:#9933CC;color:white">993 3CC =169
+    </li>
+    <li style="background-color:#CC66FF;color:black" class="tall4">CC6 6FF =170
+    </li>
+    <li style="background-color:#9900FF;color:white" class="tall4">990 0FF =171
+    </li>
+    <li style="background-color:#00FF99;color:black" class="span3">00F F99 =172
+    </li>
+    <li style="background-color:#66FFCC;color:black">66F FCC =173
+    </li>
+    <li style="background-color:#33CC99;color:black" class="span3">33C C99 =174
+    </li>
+    <li style="background-color:#33FFFF;color:black" class="tall4">33F FFF =175
+    </li>
+    <li style="background-color:#33CCCC;color:black">33C CCC =176
+    </li>
+    <li style="background-color:#339999;color:white" class="span3">339 999 =177
+    </li>
+    <li style="background-color:#336666;color:white">336 666 =178
+    </li>
+    <li style="background-color:#006699;color:white" class="span3">006 699 =179
+    </li>
+    <li style="background-color:#003399;color:white" class="span3">003 399 =180
+    </li>
+    <li style="background-color:#3333FF;color:white" class="tall4">333 3FF =181
+    </li>
+    <li style="background-color:#3333CC;color:white">333 3CC =182
+    </li>
+    <li style="background-color:#333399;color:white" class="span3">333 399 =183
+    </li>
+    <li style="background-color:#333366;color:white">333 366 =184
+    </li>
+    <li style="background-color:#6633CC;color:white">663 3CC =185
+    </li>
+    <li style="background-color:#9966FF;color:black" class="tall4">996 6FF =186
+    </li>
+    <li style="background-color:#6600FF;color:white" class="tall4">660 0FF =187
+    </li>
+    <li style="background-color:#00FFCC;color:black">00F FCC =188
+    </li>
+    <li style="background-color:#33FFCC;color:black">33F FCC =189
+    </li>
+    <li style="background-color:#00FFFF;color:black" class="tall4">00F FFF =190
+    </li>
+    <li style="background-color:#00CCCC;color:black">00C CCC =191
+    </li>
+    <li style="background-color:#009999;color:white" class="span3">009 999 =192
+    </li>
+    <li style="background-color:#006666;color:white">006 666 =193
+    </li>
+    <li style="background-color:#003333;color:white">003 333 =194
+    </li>
+    <li style="background-color:#3399CC;color:black">339 9CC =195
+    </li>
+    <li style="background-color:#3366CC;color:white">336 6CC =196
+    </li>
+    <li style="background-color:#0000FF;color:white" class="tall4">000 0FF =197
+    </li>
+    <li style="background-color:#0000CC;color:white">000 0CC =198
+    </li>
+    <li style="background-color:#000099;color:white" class="span3">000 099 =199
+    </li>
+    <li style="background-color:#000066;color:white">000 066 =200
+    </li>
+    <li style="background-color:#000033;color:white">000 033 =201
+    </li>
+    <li style="background-color:#6633FF;color:white" class="tall4">663 3FF =202
+    </li>
+    <li style="background-color:#3300FF;color:white" class="tall4">330 0FF =203
+    </li>
+    <li style="background-color:#00CC99;color:black" class="span3">00C C99 =204
+    </li>
+    <li style="background-color:#0099CC;color:white">009 9CC =205
+    </li>
+    <li style="background-color:#33CCFF;color:black" class="tall4">33C CFF =206
+    </li>
+    <li style="background-color:#66CCFF;color:black" class="tall4">66C CFF =207
+    </li>
+    <li style="background-color:#6699FF;color:black" class="tall4">669 9FF =208
+    </li>
+    <li style="background-color:#3366FF;color:white" class="tall4">336 6FF =209
+    </li>
+    <li style="background-color:#0033CC;color:white">003 3CC =210
+    </li>
+
+    <li style="background-color:#3300CC;color:white">330 0CC =211
+    </li>
+    <li style="background-color:#00CCFF;color:black" class="tall4">00C CFF =212
+    </li>
+    <li style="background-color:#0099FF;color:white" class="tall4">009 9FF =213
+    </li> 
+    <li style="background-color:#0066FF;color:white" class="tall4">006 6FF =214
+    </li>
+    <li style="background-color:#0033FF;color:white" class="tall4">003 3FF =215
+    </li>
+
+
+  </ul>
+
+</div>
+  
+  
+  
+
+
+
+</body></html>

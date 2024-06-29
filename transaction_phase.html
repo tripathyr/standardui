@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Phases</title>
+  <style>
+    /* CSS code provided */
+    .transaction__phase {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .transaction__phase:not(:last-of-type) {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .transaction__phase:not(:last-of-type)::after {
+      content: "";
+      position: absolute;
+      width: 0.1rem;
+      height: 100%;
+      left: 0.3rem;
+      border-right: dashed 0.1rem rgba(var(--text-color), 0.5);
+      top: calc(100% + 0.4rem);
+    }
+    .transaction__phase .icon {
+      height: 1rem;
+      width: 1rem;
+    }
+    .transaction__phase sm-spinner {
+      --size: 1rem;
+    }
+    .transaction__phase .confirmed {
+      fill: var(--green);
+    }
+  </style>
+</head>
+<body>
+  <div class="transaction">
+    <div class="transaction__phase">
+      <svg class="icon confirmed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 21.84c-5.438 0-9.84-4.402-9.84-9.84S6.562 2.16 12 2.16 21.84 6.562 21.84 12 17.438 21.84 12 21.84z"/><path d="M10.244 15.884l-4.14-4.156 1.476-1.476 2.664 2.664L16.42 7.648l1.476 1.476z"/></svg>
+      <span>Phase 1: Confirmed</span>
+    </div>
+    <div class="transaction__phase">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 21.84c-5.438 0-9.84-4.402-9.84-9.84S6.562 2.16 12 2.16 21.84 6.562 21.84 12 17.438 21.84 12 21.84z"/></svg>
+      <span>Phase 2: Processing</span>
+      <sm-spinner></sm-spinner>
+    </div>
+    <div class="transaction__phase">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 21.84c-5.438 0-9.84-4.402-9.84-9.84S6.562 2.16 12 2.16 21.84 6.562 21.84 12 17.438 21.84 12 21.84z"/></svg>
+      <span>Phase 3: Pending</span>
+    </div>
+  </div>
+</body>
+</html>

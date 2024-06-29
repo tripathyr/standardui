@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head content -->
+</head>
+
+<body class="hide-completely">
+    <!-- Notifications component -->
+    <sm-notifications id="notification_drawer"></sm-notifications>
+    <!-- Main content -->
+    <main>
+        <!-- Header -->
+        <header id="main_header" class="flex align-center space-between">
+            <!-- Hamburger menu button -->
+            <button id="side_nav_button" class="interact" onclick="getRef('side_nav').open()"
+                aria-label="Hamburger menu toggle button">
+                <!-- Hamburger icon -->
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M16 18v2H5v-2h11zm5-7v2H3v-2h18zm-2-7v2H8V4h11z" />
+                </svg>
+            </button>
+            <!-- Page title -->
+            <h4>SM Components</h4>
+            <!-- Theme toggle component -->
+            <theme-toggle></theme-toggle>
+        </header>
+        <!-- Hamburger menu -->
+        <hamburger-menu id="side_nav">
+            <!-- Getting Started section -->
+            <h4>Getting Started</h4>
+            <ul class="list">
+                <!-- Navigation links -->
+                <li>
+                    <a href="#overview_page" class="list__item list__item--active interact">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="#quick_start_page" class="list__item interact">
+                        Quick start
+                    </a>
+                </li>
+                <li>
+                    <a href="#global_styling_page" class="list__item interact">
+                        Global styling
+                    </a>
+                </li>
+            </ul>
+            <!-- Components section -->
+            <h4>Components</h4>
+            <ul id="components_list" class="list"></ul>
+        </hamburger-menu>
+        <!-- Main content sections -->
+        <article class="right language-html">
+            <!-- Overview section -->
+            <section id="overview_page" class="page">
+                <!-- Overview content -->
+            </section>
+            <!-- Quick Start section -->
+            <section id="quick_start_page" class="page hide-completely">
+                <!-- Quick Start content -->
+            </section>
+            <!-- Copy section -->
+            <section id="copy_page" class="page hide-completely">
+                <!-- Copy content -->
+            </section>
+            <!-- Switch section -->
+            <section id="switch_page" class="page hide-completely">
+                <!-- Switch content -->
+            </section>
+            <!-- Text field section -->
+            <section id="text_field_page" class="page hide-completely">
+                <!-- Text field content -->
+            </section>
+            <!-- Theme toggle section -->
+            <section id="theme_toggle_page" class="page hide-completely">
+                <!-- Theme toggle content -->
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  font-size: clamp(1rem, 1.2vmax, 1.2rem);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  --accent-color: #0d7377;
+  --secondary-color: #ffac2e;
+  --text-color: 20, 20, 20;
+  --foreground-color: 252, 253, 255;
+  --background-color: 241, 243, 248;
+  --danger-color: rgb(255, 75, 75);
+  --green: #1cad59;
+  --yellow: rgb(220, 165, 0);
+  color: rgba(var(--text-color), 1);
+  background-color: rgba(var(--background-color), 1);
+  overflow-y: hidden;
+}
+
+body[data-theme=dark] {
+  --accent-color: #32e0c4;
+  --secondary-color: #d60739;
+  --text-color: 220, 220, 220;
+  --foreground-color: 27, 28, 29;
+  --background-color: 21, 22, 22;
+  --danger-color: rgb(255, 106, 106);
+  --green: #00e676;
+  --yellow: rgb(255, 213, 5);
+}
+
+p,
+strong {
+  font-size: 0.9rem;
+  max-width: 65ch;
+  line-height: 1.7;
+  color: rgba(var(--text-color), 0.9);
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus-visible {
+  box-shadow: 0 0 0 0.1rem rgba(var(--text-color), 1) inset;
+}
+
+button {
+  display: inline-flex;
+  border: none;
+  background-color: inherit;
+}
+
+a:-webkit-any-link:focus-visible {
+  outline: rgba(var(--text-color), 1) 0.1rem solid;
+}
+
+a:-moz-any-link:focus-visible {
+  outline: rgba(var(--text-color), 1) 0.1rem solid;
+}
+
+a:any-link:focus-visible {
+  outline: rgba(var(--text-color), 1) 0.1rem solid;
+}
+
+sm-button {
+  --border-radius: 0.3rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.table {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  position: relative;
+  text-align: left;
+  overflow-x: auto;
+  border-radius: 0.3rem;
+  border-collapse: separate;
+  border-spacing: 1rem 1.5rem;
+  background-color: rgba(var(--text-color), 0.04);
+}
+.table p:only-of-type {
+  margin-bottom: 0;
+}
+
+.tr {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: 11rem 1fr;
+  width: 100%;
+}
+.tr:nth-of-type(odd) {
+  background-color: rgba(var(--text-color), 0.04);
+}
+.tr p {
+  min-width: 30ch;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hide-completely {
+  display: none !important;
+}
+
+.no-transformations {
+  transform: none !important;
+}
+
+.overflow-ellipsis {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.breakable {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.full-bleed {
+  grid-column: 1/4;
+}
+
+.h1 {
+  font-size: 2.5rem;
+}
+
+.h2 {
+  font-size: 2rem;
+}
+
+.h3 {
+  font-size: 1.4rem;
+}
+
+.h4 {
+  font-size: 1rem;
+}
+
+.h5 {
+  font-size: 0.8rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-3 {
+  grid-template-columns: 1fr auto auto;
+}
+
+.flow-column {
+  grid-auto-flow: column;
+}
+
+.gap-0-5 {
+  gap: 0.5rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-1-5 {
+  gap: 1.5rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-right {
+  margin-left: auto;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.color-0-8 {
+  color: rgba(var(--text-color), 0.8);
+}
+
+.weight-400 {
+  font-weight: 400;
+}
+
+.weight-500 {
+  font-weight: 500;
+}
+
+.ripple {
+  height: 8rem;
+  width: 8rem;
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: radial-gradient(circle, rgba(var(--text-color), 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+  pointer-events: none;
+}
+
+.interact {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.observe-empty-state:empty {
+  display: none;
+}
+
+.observe-empty-state:not(:empty) ~ .empty-state {
+  display: none;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: rgba(var(--text-color), 0.9);
+}
+
+.button__icon {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+.button__icon--left {
+  margin-right: 0.5rem;
+}
+.button__icon--right {
+  margin-left: 0.5rem;
+}
+
+h1,
+h2,
+h3,
+h4.h5 {
+  font-family: "Poppins", sans-serif;
+}
+
+h2 {
+  margin: 3rem 0 1rem 0;
+  text-transform: capitalize;
+}
+
+main {
+  display: grid;
+  height: 100%;
+}
+
+#main_header {
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid rgba(var(--text-color), 0.1);
+}
+
+#side_nav_button {
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+}
+
+.right {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+#side_nav > :last-child {
+  padding-bottom: 3rem;
+}
+#side_nav h4 {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1.5rem;
+}
+
+.right {
+  padding: 1.5rem;
+}
+.right h1 {
+  margin-bottom: 1.5rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+
+.list__item {
+  display: flex;
+  padding: 0.8rem 1.5rem;
+  text-transform: capitalize;
+}
+.list__item--active {
+  color: var(--accent-color);
+  background: rgba(var(--text-color), 0.06);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  border-radius: 0.4rem;
+  padding: 1.5rem;
+  min-width: min(24rem, 80%);
+  background-color: rgba(var(--text-color), 0.06);
+}
+
+sm-carousel {
+  margin-bottom: 1rem;
+}
+
+sm-tab-header {
+  margin-bottom: 1.5rem;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3rem;
+}
+
+ol {
+  padding: 0.6rem 1rem;
+  max-width: 75ch;
+  margin-bottom: 1.5rem;
+}
+ol li {
+  margin-bottom: 1rem;
+}
+ol li:last-of-type {
+  margin-bottom: 0;
+}
+
+strong {
+  max-width: 65ch;
+}
+
+strong.important {
+  display: flex;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 0.3rem;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: khaki;
+}
+
+.highlight {
+  display: inline-flex;
+  font-family: "Roboto Mono", monospace;
+  background-color: rgba(var(--text-color), 0.1);
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+#total_components_count {
+  font-size: 4rem;
+}
+
+#components_selection_list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  padding: 1.5rem 0 3rem 0;
+}
+
+.comp-checkbox__title {
+  margin-left: 0.5rem;
+}
+
+.auto-grid-2 {
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+.screenshot {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+  height: 30rem;
+  width: 16rem;
+  border-radius: 1rem;
+  justify-self: center;
+  box-shadow: 0 0.5rem 1.5rem -0.5rem rgba(0, 0, 0, 0.3), 0 0 0 0.3rem black;
+}
+
+@media screen and (max-width: 640px) {
+  main {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 640px) {
+  sm-popup {
+    --width: 32rem;
+  }
+  #main_header {
+    padding: 1rem 1.5rem;
+    grid-area: main-header;
+  }
+  #side_nav_button {
+    display: none;
+  }
+  main {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    grid-template-areas: "main-header main-header" ". .";
+  }
+  .right {
+    display: grid;
+    grid-template-columns: 1fr 90% 1fr;
+  }
+  .right > * {
+    grid-column: 2/3;
+  }
+  .page__title {
+    font-size: 2.5rem;
+  }
+  #overview_page {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr auto;
+  }
+  #overview_page > div:first-of-type {
+    grid-column: 2/3;
+    text-align: right;
+  }
+  #overview_page > div:nth-of-type(2) {
+    grid-row: 1/2;
+  }
+}
+@media (any-hover: hover) {
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--text-color), 0.3);
+    border-radius: 1rem;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--text-color), 0.5);
+  }
+  .list__item:hover {
+    background: rgba(var(--text-color), 0.1);
+    cursor: pointer;
+  }
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+</head>
+
+<body class="hide-completely">
+    <sm-notifications id="notification_drawer"></sm-notifications>
+    <main>
+        <header id="main_header" class="flex align-center space-between">
+            <button id="side_nav_button" class="interact" onclick="getRef('side_nav').open()"
+                aria-label="Hamburger menu toggle button">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M16 18v2H5v-2h11zm5-7v2H3v-2h18zm-2-7v2H8V4h11z" />
+                </svg>
+            </button>
+            <h4>SM Components</h4>
+            <theme-toggle></theme-toggle>
+        </header>
+        <hamburger-menu id="side_nav">
+            <h4>Getting Started</h4>
+            <ul class="list">
+                <li>
+                    <a href="#overview_page" class="list__item list__item--active interact">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="#quick_start_page" class="list__item interact">
+                        Quick start
+                    </a>
+                </li>
+                <li>
+                    <a href="#global_styling_page" class="list__item interact">
+                        Global styling
+                    </a>
+                </li>
+            </ul>
+            <h4>Components</h4>
+            <ul id="components_list" class="list"></ul>
+        </hamburger-menu>
+        <article class="right language-html">
+            <section id="overview_page" class="page">
+                <div>
+                    <h5 class="color-0-8 weight-500">Total components</h5>
+                    <h1 id="total_components_count" class="h1"></h1>
+                </div>
+                <div>
+                    <h1 class="page__title">Overview</h1>
+                    <div class="grid gap-2">
+                        <div class="div">
+                            <p>
+                                Component-based design is the cornerstone of the modern UI development process. With
+                                rise of
+                                more UI frameworks every day, the web platform has a serious issue of fragmentation and
+                                portability.
+                            </p>
+                            <p>
+                                Web components to the rescue! This is the collection of web components (WC here forward)
+                                that we
+                                use at RanchiMall, especially since we are a framework-less development environment so
+                                this was
+                                a logical choice.
+                            </p>
+                        </div>
+                        <div class="grid gap-1">
+                            <h3>Features</h3>
+                            <ul class="grid gap-0-5">
+                                <li>Native and Cross framework support</li>
+                                <li>Encapsulated style and functionality</li>
+                                <li>Easy styling</li>
+                                <li>Adaptive scaling </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quick_start_page" class="page hide-completely">
+                <h1 class="page__title">Quick Start</h1>
+                <ol>
+                    <li>
+                        To start using these components, Select the ones you want to add to your project. You can
+                        un-check 'get minified' to get the readable code.
+                    </li>
+                    <li>
+                        Now you can download or copy the source code for selected components.
+                        <strong class="important">
+                            You might get a warning while downloading like this file is not safe,
+                            please allow the download as this is caused when downloading files with '.js' extension.
+                            These components are 100% safe to use.
+                        </strong>
+                    </li>
+                    <li>
+                        Link the downloaded js before <span class="highlight">&lt;/body&gt;</span>
+                        <syntax-highlighter>
+                            <script src=".../components.js"></script>
+                        </syntax-highlighter>
+                    </li>
+                </ol>
+                <div class="grid grid-3 gap-0-5 align-center">
+                    <sm-checkbox id="get_minified" checked>
+                        <span class="comp-checkbox__title">
+                            Get minified
+                        </span>
+                    </sm-checkbox>
+                    <sm-button onclick="selectAll()">Select all</sm-button>
+                    <sm-button onclick="clearAll()">Clear all</sm-button>
+                </div>
+                <div id="components_selection_list"></div>
+                <div class="flex align-center space-between">
+                    <sm-button onclick="copySourceCode()">Copy source code</sm-button>
+                    <sm-button variant="primary" onclick="downloadComponents()">Download JS file</sm-button>
+                </div>
+            </section>
+
+           
+
+                <h2>Styling</h2>
+                <p>CSS variables used to style this component</p>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Variable</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--border-color</span></div>
+                        <p>
+                            Defines color of un-checked checkbox border
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--border-radius</span></div>
+                        <p>
+                            Defines border-radius of checkbox square
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--height</div>
+                        <p>
+                            Defines height of checkbox
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--width</div>
+                        <p>
+                            Defines width of checkbox
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+            <section id="copy_page" class="page hide-completely">
+                <h1 class="page__title">Copy</h1>
+                <h2>Interactive demo</h2>
+                <sm-copy value="this wiil be copied">
+                    <div>this will be copied</div>
+                </sm-copy>
+                <syntax-highlighter>
+                    <sm-copy value="this wiil be copied">
+                        <div>this will be copied</div>
+                    </sm-copy>
+                </syntax-highlighter>
+                <h2>Usage</h2>
+                <syntax-highlighter>
+                    <template>
+                        <sm-copy id="text_to_copy" value="sample text"></sm-copy>
+                        <script>
+                            const textToCopy = document.getElementById('text_to_copy')
+                            textToCopy.value = 'Different value'; /* Setting value to be copied */
+                        </script>
+                    </template>
+                </syntax-highlighter>
+
+                <h2>Attributes</h2>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Attribute</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">value</span> ( string )</div>
+                        <p>
+                            Defines content that will be copied when copy button is clicked
+                        </p>
+                    </div>
+                </section>
+                <h2>Styling</h2>
+                <p>CSS variables used to style this component</p>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Variable</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--button-background-color</span></div>
+                        <p>
+                            Defines background color of copy button
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--button-border-radius</span></div>
+                        <p>
+                            Defines border-radius of copy button
+                        </p>
+                    </div>
+                </section>
+                <h2>Supported events</h2>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Event</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">copy</span></div>
+                        <p>
+                            Fired when text is copied by user.
+                        </p>
+                    </div>
+                </section>
+            </section>
+
+           
+                <h2>Styling</h2>
+                <p>CSS variables used to style this component</p>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Variable</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--backdrop-background</span></div>
+                        <p>
+                            Defines background property of popup backdrop. Any valid CSS background value is supported.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--border-radius</span></div>
+                        <p>
+                            Defines border-radius of popup dialog box.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--body-padding</span></div>
+                        <p>
+                            Defines padding of popup dialog box.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--height</span></div>
+                        <p>
+                            Defines height of popup dialog box.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--min-height</span></div>
+                        <p>
+                            Defines min-height of popup dialog box.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--width</span></div>
+                        <p>
+                            Defines width of popup dialog box.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--min-width</span></div>
+                        <p>
+                            Defines min-width of popup dialog box.
+                        </p>
+                    </div>
+                </section>
+                <h2>Supported functions</h2>
+
+            <section id="switch_page" class="page hide-completely">
+                <h1 class="page__title">Switch</h1>
+                <p><span class="highlight">sm-switch</span> supports all the attributes of native HTML5 checkbox</p>
+                <strong>
+                    linking some HTML element with <span class="highlght">sm-switch</span> using <span
+                        class="highlight">label</span> tag won't work. <br>
+                    Add the element inside the opening and closing sm-switch tag.
+                </strong>
+                <h2>Interactive demo</h2>
+                <sm-switch id="my_switch">
+                    <div slot="left">
+                        Turn the switch
+                    </div>
+                </sm-switch>
+                <h2>States</h2>
+                <h4>Checked</h4>
+                <p>To make switch turned on by default add <span class="highlight">checked</span> attribute.</p>
+                <sm-switch checked>
+                    <div slot="left">
+                        On switch
+                    </div>
+                </sm-switch>
+                <syntax-highlighter>
+                    <sm-switch checked>
+                        <div slot="left">
+                            On switch
+                        </div>
+                    </sm-switch>
+                </syntax-highlighter>
+                <h4>Disabled</h4>
+                <p>To disable the switch add <span class="highlight">disabled</span> attribute.</p>
+                <sm-switch disabled>
+                    <div slot="left">
+                        Disabled checkbox
+                    </div>
+                </sm-switch>
+                <syntax-highlighter>
+                    <sm-switch disabled>
+                        <div slot="left">
+                            Disabled checkbox
+                        </div>
+                    </sm-switch>
+                </syntax-highlighter>
+
+                <h2>Attributes</h2>
+                <p>All the native HTML checkbox attributes are valid</p>
+
+
+           
+               
+                <h2>Usage</h2>
+                <syntax-highlighter>
+                    <template>
+                        <sm-textarea placeholder="This is a textarea" id="my_textarea"></sm-textarea>
+                        <script>
+                            const myTextarea = document.getElelementById('my_textarea')
+                            myTextarea.value = 'some string'; /* setting value of textarea */
+
+                            myTextarea.addEventListener('input', event => {
+                                const value = event.target.value; /* accessing value of textarea */
+                            })
+                        </script>
+                    </template>
+                </syntax-highlighter>
+            </section>
+            <section id="text_field_page" class="page hide-completely">
+                <h1 class="page__title">Text field</h1>
+                <p>
+                    This component can be used in scenarios where you need to display a name or something that
+                    user
+                    should be able to edit directly
+                    in-place instead of going to other UI element.
+                </p>
+                <h2>Interactive demo</h2>
+                <text-field value="John doe"></text-field>
+                <h2>Usage</h2>
+                <syntax-highlighter>
+                    <template>
+                        <text-field id="name_field" value="John doe"></text-field>
+                        <script>
+                            const nameField = document.getElementById('name_field')
+                            nameField.addEventListener('change', event => {
+                                console.log(event.target.value) // logs out new value set by user
+                                console.log(nameField.value) // Accessing value directly with getter
+                            })
+                        </script>
+                    </template>
+                </syntax-highlighter>
+
+                <h2>Custom attributes</h2>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Attribute</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">disabled</span> ( Boolean )</div>
+                        <p>
+                            If present, text can't be edited.
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">value</span> ( string )</div>
+                        <p>
+                            Set initial text that can be edited by user.
+                        </p>
+                    </div>
+                </section>
+                <h2>Supported events</h2>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Event</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">change</span></div>
+                        <p>
+                            Fired when text changes are saved by user.
+                        </p>
+                    </div>
+                </section>
+            </section>
+            <section id="theme_toggle_page" class="page hide-completely">
+                <h1 class="page__title">Theme toggle</h1>
+                <p>
+                    Use <span class="highlight">theme-toggle</span> to create light/dark theme easily with CSS
+                    variables.
+                </p>
+                <p>When this is toggled by user the component changes the custom data attribute <span
+                        class="highlight">data-theme=""</span> on HTML body tag
+                    to either <span class="highlight">light</span> or <span class="highlight">dark</span>
+                </p>
+                <p>
+                    By default theme is set to OS level preferred-color-scheme ( supported by Android, iOS,
+                    Windows
+                    and
+                    MacOS ).
+                </p>
+                <h2>Interactive demo</h2>
+                <theme-toggle></theme-toggle>
+                <h2>HTML</h2>
+                <syntax-highlighter>
+                    <theme-toggle></theme-toggle>
+                </syntax-highlighter>
+
+                <h2>CSS</h2>
+                <syntax-highlighter>
+                    
+                </syntax-highlighter>
+
+                <h2>Styling</h2>
+                <p>CSS variables used to style this component</p>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Variable</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--height</div>
+                        <p>
+                            Defines height of toggle button
+                        </p>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">--width</div>
+                        <p>
+                            Defines width of toggle button
+                        </p>
+                    </div>
+                </section>
+                <h2>Custom events</h2>
+                <p>These are the events that will be fired when component state changes</p>
+                <section class="table">
+                    <div class="tr">
+                        <h4 class="table__heading">Event</h4>
+                        <h4 class="table__heading">Description</h4>
+                    </div>
+                    <div class="tr">
+                        <div><span class="highlight">themechange</span></div>
+                        <p>
+                            Whenever theme is toggled by user the <span class="highlight">themechange</span>
+                            event
+                            is
+                            fired. <br>
+                            You can listen to this event and access the current value of toggle with event
+                            object
+                            <span class="highlight">event.detail.theme</span>
+                        </p>
+                    </div>
+                </section>
+                <syntax-highlighter>
+                    <template>
+                        <theme-toggle id="my_theme_toggle"></theme-toggle>
+                       
+                    </template>
+                </syntax-highlighter>
+            </section>
+        </article>
+    </main>
+   
+</body>
+
+</html>

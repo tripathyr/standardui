@@ -1,0 +1,117 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  
+  
+
+  <title>CodePen - Subgrid</title>
+
+    <link rel="canonical" href="https://codepen.io/martine-dowden/pen/yLRawVP">
+  
+  
+  
+  
+<style>
+:root {
+  padding: 36px;
+  font-family: sans-serif
+}
+
+.projects ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: 100px max-content auto max-content;
+  gap: 0 2rem;
+}
+
+.projects ul li {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 1 / 5;
+}
+.projects ul li img {
+  grid-row: 1;
+  max-width: 100%;
+  justify-self: center;
+}
+.projects ul li h3 {
+  grid-row: 2;
+  align-self: center;
+}
+.projects ul li .content {
+  grid-row: 3;
+
+}
+.projects ul li a {
+  grid-row: 4;
+}
+
+@supports not (grid-template-rows: subgrid) {
+  .projects > ul li {
+    grid-template-rows: 100px min-content auto min-content;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <section class="projects">
+  <h2>My Projects</h2>
+  <ul>
+     <li>
+       <img src="https://ignitioncms.com/img/ignition-light.svg" alt="Ignition Logo" title="Ignition" height="100">
+       <h3>Ignition CMS</h3>
+       <div class="content">
+          <p>Ignition is a headless CMS specifically created for Firebase. Designed with ease of use in mind for both content creators and developers the aim is to allow you to focus on your project.</p>
+       </div>
+       <a href="https://ignitioncms.com" target="_blank" rel="noopener">Check out Ignition CMS</a>
+    </li>
+    <li>
+      <img src="https://app.cirrostyle.com/assets/img/cirrostyle.svg" alt="cirrostyle Icon" title="Cirrostyle" height="100">
+      <h3>Cirrostyle asdf asdf asdf  </h3>
+      <div class="content"><p>A brand management and sharing tool, Cirrostyle allows you to define and share your brand information, such as colors and typography, with your teams. It also provides the ability to organize, store, share, and download assets.</p></div>
+      <a href="https://cirrostyle.com/" target="_blank" rel="noopener">Check out Cirrostyle</a>
+    </li>
+    <li>
+      <img src="https://flexepark.com/assets/imgs/flexepark-horizontal.svg" height="100" alt="FlexePark Logo" title="FlexePark">
+      <h3>FlexePark™</h3>
+      <div class="content"><p>FlexePark works with businesses in your community to make parking friendlier! Parking spots that were once designated "No Parking" zones can now be made available for public use after business hours.</p>
+<p>Rather than closing their parking lots after hours, area businesses who want to improve their community can leverage the power of FlexePark to open those valuable parking spaces to anyone who needs them simply by switching their "No Parking" signs to FlexePark signs. It’s a win for FlexePark customers and for businesses, too!</p></div>
+      <a href="https://flexepark.com" target="_blank" rel="noopener">Checkout FlexePark</a>
+    </li>
+    <li>
+      <img src="https://lorelink.com/img/logo.svg" height="100" alt="Lore Link logo" title="Lore Link">
+      <h3>Lore Link</h3>
+      <div class="content"><p>Lore Link is a premium-quality RPG campaign management tool for Dungeon Masters, Game Masters, Storytellers and Keepers of all types. Here, you’ll find all the pieces you’ll need to ensure that each and every one of your campaigns runs smoothly and results in both yourself and your players having the smoothest, most enjoyable experience possible during your sessions.</p></div>
+      <a href="https://lorelink.com" target="_blank" rel="noopener">Checkout Lore Link</a>
+    </li>
+  </ul>
+    
+</section>
+  
+  
+  
+
+
+
+</body></html>

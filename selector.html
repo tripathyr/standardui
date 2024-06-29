@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribute Selector Example</title>
+    <style>
+        /* Attribute selector targeting elements with the data-private-key attribute */
+        [data-private-key] {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attribute Selector Example</h1>
+    <div data-private-key="12345">This content is marked as private.</div>
+    <span data-private-key="abcde">This is another private content.</span>
+    <p>This paragraph does not have a private key attribute.</p>
+    <div>This div also does not have a private key attribute.</div>
+</body>
+</html>

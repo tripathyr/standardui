@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checked and Unchecked Input CSS</title>
+<style>
+    /* Style for checked input */
+    input[type="checkbox"]:checked + label {
+        color: green;
+        font-weight: bold;
+    }
+
+    /* Style for unchecked input */
+    input[type="checkbox"]:not(:checked) + label {
+        color: red;
+        text-decoration: line-through;
+    }
+</style>
+</head>
+<body>
+    <input type="checkbox" id="toggle">
+    <label for="toggle">Toggle Me</label>
+</body>
+</html>

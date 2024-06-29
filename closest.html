@@ -1,0 +1,22 @@
+<ul id="itemList">
+  <li class="item">Item 1
+    <button class="btn">Button 1</button>
+  </li>
+  <li class="item">Item 2
+    <button class="btn">Button 2</button>
+  </li>
+  <li class="item">Item 3
+    <button class="btn">Button 3</button>
+  </li>
+</ul>
+
+<script>
+  document.getElementById('itemList').addEventListener('click', function(e) {
+    // Check if the clicked element or its ancestor has the class 'item'
+    const item = e.target.closest('.item');
+    if (item) {
+      // If a matching element is found, perform some action
+      console.log('Item clicked:', item.textContent.trim());
+    }
+  });
+</script>

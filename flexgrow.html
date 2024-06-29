@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Example</title>
+<style>
+    .flex-container {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        background-color: #f0f0f0;
+       /* padding: 10px;*/
+    }
+
+    .flex-item {
+      
+        padding: 20px;
+      /*  margin: 5px;*/
+        color: #fff;
+        text-align: center;
+        min-width:  300px;
+    }
+
+    .flex-item:nth-child(1) {
+      /*    flex-grow: 1;*/
+        background-color: #3498db;
+    }
+
+    .flex-item:nth-child(2) {
+        background-color: #e74c3c;
+      /*  flex-grow: 2;*/
+    }
+
+    .flex-item:nth-child(3) {
+        background-color: #27ae60;
+       /* flex-grow: 3;*/
+    }
+</style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+</body>
+</html>

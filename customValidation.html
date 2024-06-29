@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setters vs. Functions Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Setters vs. Functions Example</h1>
+    
+    <div class="section" id="setter-section">
+        <h2>Using Setters</h2>
+        <p id="setter-result" class="highlight"></p>
+    </div>
+    
+    <div class="section" id="function-section">
+        <h2>Using Functions</h2>
+        <p id="function-result" class="highlight"></p>
+    </div>
+    
+    <script>
+        // Using a Setter
+        class ValidatorWithSetter {
+            constructor() {
+                this._validationFunction = null;
+            }
+
+            set customValidation(val) {
+                if (val) {
+                    this._validationFunction = val;
+                }
+            }
+
+            get customValidation() {
+                return this._validationFunction;
+            }
+        }
+
+        // Using a Function
+        class ValidatorWithFunction {
+            constructor() {
+                this._validationFunction = null;
+            }
+
+            setCustomValidation(val) {
+                if (val) {
+                    this._validationFunction = val;
+                }
+            }
+
+            getCustomValidation() {
+                return this._validationFunction;
+            }
+        }
+
+        // Create instances
+        const validatorWithSetter = new ValidatorWithSetter();
+        const validatorWithFunction = new ValidatorWithFunction();
+
+        // Assign custom validation functions
+        validatorWithSetter.customValidation = function(value) {
+            return value > 10;
+        };
+        validatorWithFunction.setCustomValidation(function(value) {
+            return value > 10;
+        });
+
+        // Testing the validation functions
+        const setterTestValue = 15;
+        const functionTestValue = 5;
+
+        // Display results
+        document.getElementById('setter-result').textContent = 
+            `Setter result for ${setterTestValue}: ${validatorWithSetter.customValidation(setterTestValue)}`;
+
+        document.getElementById('function-result').textContent = 
+            `Function result for ${functionTestValue}: ${validatorWithFunction.getCustomValidation()(functionTestValue)}`;
+    </script>
+</body>
+</html>

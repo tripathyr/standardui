@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Example</title>
+<style>
+  .flex-container {
+    display: flex;
+    justify-content: space-between; /* Distribute items with space between them */
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+
+  .flex-item {
+    width: 100px; /* Specific width set on flex items */
+    flex-grow: 1; /* Allow flex items to grow equally */
+    background-color: #ccc;
+    padding: 10px;
+    margin-right: 10px; /* Example margin between flex items */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+</style>
+</head>
+<body>
+  <div class="flex-container">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+    <!-- Add more flex items as needed -->
+  </div>
+</body>
+</html>

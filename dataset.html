@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Example</title>
+</head>
+<body>
+    <div id="user" data-user-id-name="12345" data-role-master="admin" data-status="active">
+        User Information
+    </div>
+
+    <script>
+        // JavaScript code to access and manipulate data attributes
+        const userDiv = document.getElementById('user');
+
+        // Accessing data attributes
+        console.log(userDiv.dataset.userIdName); // "12345"
+        console.log(userDiv.dataset.roleMaster); // "admin"
+        console.log(userDiv.dataset.status); // "active"
+
+        // Modifying data attributes
+        userDiv.dataset.status = "inactive";
+        console.log(userDiv.dataset.status); // "inactive"
+
+        // Adding new data attribute
+        userDiv.dataset.newAttribute = "newValue";
+        console.log(userDiv.dataset.newAttribute); // "newValue"
+    </script>
+</body>
+</html>

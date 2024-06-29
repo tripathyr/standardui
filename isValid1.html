@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+        .error.visible {
+            display: block;
+        }
+        .button--primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .button--primary:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="check_balance_input" placeholder="Enter private key or ETH address">
+        <div id="error_message" class="error">Error message here</div>
+    </div>
+    <div class="multi-state-button">
+        <button id="check_balance_button" class="button button--primary" type="submit" disabled>
+            Check balance
+        </button>
+    </div>
+
+    <script>
+        function getRef(id) {
+            return document.getElementById(id);
+        }
+
+        const validationConfig = {
+            selector: '#check_balance_input',
+            customValidation: (value) => {
+                if (!value) return { isValid: false, errorText: 'Please enter a private key or eth address' };
+                return {
+                    isValid: floCrypto.getPubKeyHex(value) || ethOperator.isValidAddress(value),
+                    errorText: 'Invalid private key or eth address'
+                };
+            }
+        };
+
+        const inputElement = getRef('check_balance_input');
+        const errorMessageElement = getRef('error_message');
+        const checkBalanceButton = getRef('check_balance_button');
+
+        inputElement.addEventListener('input', function(e) {
+            const { isValid, errorText } = validationConfig.customValidation(e.target.value);
+            e.target.isValid = isValid;
+
+            if (isValid) {
+                errorMessageElement.classList.remove('visible');
+                checkBalanceButton.disabled = false;
+            } else {
+                errorMessageElement.textContent = errorText;
+                errorMessageElement.classList.add('visible');
+                checkBalanceButton.disabled = true;
+            }
+        });
+
+        function checkBalance() {
+            console.log('Checking balance...');
+            // Your balance checking logic here
+        }
+
+        checkBalanceButton.addEventListener('click', checkBalance);
+    </script>
+</body>
+</html>

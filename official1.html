@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Layout</title>
+<style>
+  #grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px; /* Optional gap between grid items */
+  }
+
+  #title    { grid-column: 1; grid-row: 1; }
+  #score    { grid-column: 1; grid-row: 3; }
+  #stats    { grid-column: 1; grid-row: 2;  }
+  #board    { grid-column: 2; grid-row: 1 / span 2; }
+  #controls { grid-column: 2; grid-row: 3;  }
+
+  /* Optional styling for clarity */
+  #grid {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  div {
+    background-color: lightblue;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000;
+  }
+
+  #title {
+    min-height: 600px;
+  }
+
+  #stats {
+    max-width: 100px;
+  }
+</style>
+</head>
+<body>
+  <div id="grid">
+    <div id="title"><b>Game Title</b></div>
+    <div id="score"><b>Score</b></div>
+    <div id="stats"><b>Stats</b>Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.</div>
+    <div id="board"><b>Board</b> <!-- Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes. --></div><p></p>
+    <div id="controls"><b>Controls</b> <!-- Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes.Continuing the prior example, the author also wants the game to adapt to different devices. Also, the game should optimize the placement of the components when viewed either in portrait or landscape orientation (Figures 6 and 7). By combining grid layout with media queries, the author is able to use the same semantic markup, but rearrange the layout of elements independent of their source order, to achieve the desired layout in both orientations.
+
+The following example uses grid layout’s ability to name the space which will be occupied by a grid item. This allows the author to avoid rewriting rules for grid items as the grid’s definition changes. --></div>
+  </div>
+</body>
+</html>

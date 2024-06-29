@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>querySelector vs querySelectorAll</title>
+  <style>
+    .paragraph {
+      color: blue;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <p class="paragraph">Paragraph 1</p>
+    <p class="paragraph highlight">Paragraph 2 (Highlighted)</p>
+    <p class="paragraph">Paragraph 3</p>
+  </div>
+
+  <script>
+    // Using querySelector to select the first paragraph with class "paragraph"
+    const firstParagraph = document.querySelector('.paragraph');
+    console.log(firstParagraph.textContent); // Output: "Paragraph 1"
+
+    // Using querySelectorAll to select all paragraphs with class "paragraph"
+    const allParagraphs = document.querySelectorAll('.paragraph');
+    allParagraphs.forEach(paragraph => console.log(paragraph.textContent));
+    // Output:
+    // "Paragraph 1"
+    // "Paragraph 2 (Highlighted)"
+    // "Paragraph 3"
+  </script>
+</body>
+</html>

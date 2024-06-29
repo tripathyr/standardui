@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-State Button Example</title>
+    <style>
+        .multi-state-button {
+            display: grid;
+            text-align: center;
+            align-items: center;
+            justify-items: center;
+            isolation: isolate;
+            width: 200px;
+            height: 50px;
+            position: relative;
+            margin: 50px auto;
+        }
+        .multi-state-button > * {
+            grid-area: 1/1/2/2;
+        }
+        .multi-state-button button {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .loading-state, .error-state {
+            display: none;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .multi-state-button.loading .loading-state {
+            display: flex;
+        }
+        .multi-state-button.error .error-state {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="multi-state-button" id="multiStateButton">
+        <button onclick="simulateLoading()">Click Me</button>
+        <div class="loading-state">Loading...</div>
+        <div class="error-state">Error!</div>
+    </div>
+
+    <script>
+        function simulateLoading() {
+            const buttonContainer = document.getElementById('multiStateButton');
+            buttonContainer.classList.add('loading');
+
+            // Simulate a loading process
+            setTimeout(() => {
+                buttonContainer.classList.remove('loading');
+                buttonContainer.classList.add('error');
+            }, 2000); // 2 seconds loading time
+
+            // Clear error state after a while
+            setTimeout(() => {
+                buttonContainer.classList.remove('error');
+            }, 4000); // 2 seconds error display time
+        }
+    </script>
+</body>
+</html>

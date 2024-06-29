@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow DOM Slots Example</title>
+</head>
+<body>
+  <h1>Main Page Content</h1>
+  <div id="shadowHost"></div>
+
+  <script>
+    // Create a shadow root and attach it to the shadow host
+    const shadowHost = document.getElementById('shadowHost');
+    const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+
+    // Create a template element for the shadow DOM
+    const template = document.createElement('template');
+    template.innerHTML = `
+      <style>
+        .shadow-content {
+          background-color: lightblue;
+          padding: 20px;
+          margin-top: 10px;
+        }
+      </style>
+      <div class="shadow-content">
+        <h2>Shadow DOM Content</h2>
+        <slot name="slot1"></slot>
+        <slot name="slot2"></slot>
+      </div>
+    `;
+
+    // Append the template content to the shadow root
+    shadowRoot.appendChild(template.content.cloneNode(true));
+  </script>
+
+  <!-- Slot content -->
+  <div slot="slot1">Content for Slot 1</div>
+  <div slot="slot2">Content for Slot 2</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <style>
+        .invalid {
+            border: 2px solid red;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <span class="error-message" id="usernameError"></span><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="error-message" id="emailError"></span><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to handle invalid events
+        function handleInvalid(event) {
+            event.preventDefault(); // Prevent the default invalid behavior
+            const target = event.target;
+
+            // Add invalid class to the input
+            target.classList.add('invalid');
+
+            // Display custom error message
+            const errorMessage = target.nextElementSibling;
+            if (target.validity.valueMissing) {
+                errorMessage.textContent = `${target.name} is required.`;
+            } else if (target.validity.typeMismatch) {
+                errorMessage.textContent = `Please enter a valid ${target.name}.`;
+            } else {
+                errorMessage.textContent = 'Invalid input.';
+            }
+        }
+
+        // Attach oninvalid event listener to each input field
+        const form = document.getElementById('myForm');
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.oninvalid = handleInvalid;
+            input.oninput = () => {
+                // Remove invalid class and clear error message on input
+                input.classList.remove('invalid');
+                const errorMessage = input.nextElementSibling;
+                errorMessage.textContent = '';
+            };
+        });
+    </script>
+</body>
+</html>

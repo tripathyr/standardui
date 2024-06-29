@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Butterfly using CSS Grid</title>
+  <style>
+    .butterfly-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: repeat(5, 1fr);
+      gap: 10px;
+      height: 400px;
+      margin: 50px auto;
+    }
+
+    .butterfly-container div {
+      background-color: #ff69b4;
+      border-radius: 50%;
+    }
+
+    .wing-top-left {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+    }
+
+    .wing-top-right {
+      grid-column: 4 / span 2;
+      grid-row: 1 / span 2;
+    }
+
+    .body {
+      grid-column: 2 / span 3;
+      grid-row: 3 / span 3;
+    }
+
+    .wing-bottom-left {
+      grid-column: 1 / span 2;
+      grid-row: 4 / span 2;
+    }
+
+    .wing-bottom-right {
+      grid-column: 4 / span 2;
+      grid-row: 4 / span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="butterfly-container">
+    <div class="wing-top-left"></div>
+    <div class="wing-top-right"></div>
+    <div class="body"></div>
+    <div class="wing-bottom-left"></div>
+    <div class="wing-bottom-right"></div>
+  </div>
+</body>
+</html>

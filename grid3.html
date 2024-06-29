@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Layout Example</title>
+<style>
+  * {
+    box-sizing: border-box; /* Apply box-sizing to all elements */
+  }
+
+/*MOST IMPORTANT TO REMOVE SCROLLING*/
+body {
+  margin: 0;
+}
+  .grid-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 10px;
+    height: 100vh; /* Changed to min-height */
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  .grid-item {
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="grid-item">Header (Auto-sized row)</div>
+    <div class="grid-item">Main Content (1fr-sized row)</div>
+    <div class="grid-item">Footer (Auto-sized row)</div>
+  </div>
+</body>
+</html>

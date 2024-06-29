@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Component with Slots</title>
+<style>
+  /* Styles for the card component */
+  .card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  .card-content {
+    padding: 16px;
+  }
+</style>
+</head>
+<body>
+  <div id="cardContainer"></div>
+
+  <script>
+    // Define the card component with shadow DOM and slots
+    class CardComponent extends HTMLElement {
+      constructor() {
+        super();
+
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        
+        shadowRoot.innerHTML = `
+          <style>
+            /* Styles specific to the shadow DOM */
+            .card {
+              width: 100%;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .card img {
+              width: 100%;
+              height: auto;
+            }
+            .card-content {
+              padding: 16px;
+            }
+          </style>
+          <div class="card">
+            <slot name="title"></slot>
+            <div class="card-content">
+              <slot name="description"></slot>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Define custom elements for the card component
+    customElements.define('card-component', CardComponent);
+
+    // Create instances of the card component and append to the container
+    const cardContainer = document.getElementById('cardContainer');
+
+    const card1 = document.createElement('card-component');
+    card1.innerHTML = `
+      <h2 slot="title">Card Title 1</h2>
+      <p slot="description">Description for Card 1</p>
+    `;
+
+    const card2 = document.createElement('card-component');
+    card2.innerHTML = `
+      <h2 slot="title">Card Title 2</h2>
+      <p slot="description">Description for Card 2</p>
+    `;
+
+    cardContainer.appendChild(card1);
+    cardContainer.appendChild(card2);
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Component with Shadow DOM and Multiple Slots</title>
+  <style>
+    custom-element {
+      display: block;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Web Component Example</h1>
+  <form id="customElementForm">
+    <!-- Custom element with an ID and two slots -->
+    <custom-element id="myCustomElement">
+      <div slot="slot1">Original Slot 1 Content</div>
+      <div slot="slot2">Original Slot 2 Content</div>
+    </custom-element>
+    <button type="button" id="changeSlot1Text">Change Slot 1 Text</button>
+    <button type="button" id="changeSlot2Text">Change Slot 2 Text</button>
+    <button type="button" id="changeColor">Change Slot 2 Color</button>
+  </form>
+
+  <script>
+    class CustomElement extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <div id="content">
+            <slot name="slot1"></slot>
+            <slot name="slot2"></slot>
+          </div>
+          <style>
+            #content {
+              font-size: 20px;
+            }
+            ::slotted([slot="slot2"]) {
+              color: black;
+            }
+          </style>
+        `;
+      }
+
+      // Private method to log internal state
+      #logInternalState() {
+        console.log('Internal state logged:', this.shadowRoot.getElementById('content').innerHTML);
+      }
+
+      // Method to change the color of the text in slot2
+      changeColor(newColor) {
+        const slot2Elements = this.shadowRoot.querySelector('slot[name="slot2"]').assignedNodes();
+        slot2Elements.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            node.style.color = newColor;
+          }
+        });
+        this.#logInternalState();
+      }
+    }
+
+    customElements.define('custom-element', CustomElement);
+
+    // Accessing the custom element by ID
+    const customElement = document.getElementById('myCustomElement');
+
+    // Event listener to change the text content of slot 1
+    document.getElementById('changeSlot1Text').addEventListener('click', () => {
+      customElement.querySelector('[slot="slot1"]').textContent = 'Slot 1 text changed!';
+    });
+
+    // Event listener to change the text content of slot 2
+    document.getElementById('changeSlot2Text').addEventListener('click', () => {
+      customElement.querySelector('[slot="slot2"]').textContent = 'Slot 2 text changed!';
+    });
+
+    // Event listener to change the color of the text in slot 2
+    document.getElementById('changeColor').addEventListener('click', () => {
+      customElement.changeColor('blue');
+    });
+  </script>
+</body>
+</html>
